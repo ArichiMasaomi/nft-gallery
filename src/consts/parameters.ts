@@ -14,8 +14,26 @@ export const redstone = /* @__PURE__ */ defineChain({
   rpc: "https://rpc.redstonechain.com",
   blockExplorers: [
     {
-      name: "Etherscan",
-      url: "https://etherscan.io",
+      name: "redstone explore",
+      url: "https://explorer.redstone.xyz/",
+    },
+  ],
+});
+
+
+export const redstone_test = /* @__PURE__ */ defineChain({
+  id: 17001,
+  name: "Redstone Holesky Testnet",
+  nativeCurrency: {
+    name: "Ether",
+    symbol: "ETH",
+    decimals: 18,
+  },
+  rpc: "https://rpc.holesky.redstone.xyz",
+  blockExplorers: [
+    {
+      name: "redstone explore",
+      url: "https://explorer.holesky.redstone.xyz/",
     },
   ],
 });

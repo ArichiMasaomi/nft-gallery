@@ -11,7 +11,7 @@ import {
   useContractEvents,
   useReadContract,
 } from "thirdweb/react";
-import { getNFT, transferEvent } from "thirdweb/extensions/erc721";
+import { getNFT, transferEvent,ownerOf } from "thirdweb/extensions/erc721";
 import { getContractMetadata } from "thirdweb/extensions/common";
 
 const NFTPage = () => {
@@ -20,6 +20,16 @@ const NFTPage = () => {
     contract: nftContract,
     tokenId: BigInt(id as string),
   });
+
+  const { data:owner, isLoading:isLoading2 } = useReadContract(ownerOf, {
+
+    contract: nftContract,
+      tokenId: BigInt(id as string),
+  });
+
+
+
+  console.log(nft,owner);
   const { data: contractMetadata } = useReadContract(getContractMetadata, {
     contract: nftContract,
   });
@@ -126,11 +136,11 @@ const NFTPage = () => {
               )
             )}
 
-            {isLoading ? (
+            {isLoading2 ? (
               <div className="mt-2 h-8 w-1/2 animate-pulse rounded-lg bg-gray-800" />
             ) : (
               <p className="text-3xl font-bold text-white">
-                {nft?.owner ? truncateAddress(nft?.owner!) : "N/A"}
+                {owner ? truncateAddress(owner) : "N/A"}
               </p>
             )}
           </div>

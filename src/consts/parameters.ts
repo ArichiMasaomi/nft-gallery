@@ -46,12 +46,12 @@ export const client = createThirdwebClient({
 
 export const nftContract = getContract({
   // Your smart contract address (available on the thirdweb dashboard)
-  address: "0xe680743004614a15db9873aa1aaf0ca3b101619f",
+  address: "0x7C6eaAE88399840827C548F7CD82488ED3102573",
   // The chain object of the chain your contract is deployed to.
   // If that chain isn't in the default list of our SDK, use `defineChain` - for example: defineChain(666666)
-  chain: redstone,
+  chain: redstone_test,
   client,
 });
 
 // The block explorer you want to use (Opens when user clicks on history of events. i.e. transfers)
-export const blockExplorer = "https://etherscan.io";
+export const blockExplorer ="https://explorer.holesky.redstone.xyz/";// "https://etherscan.io";

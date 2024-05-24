@@ -35,6 +35,16 @@ app.get("/token/:tokenId", (req, res) => {
   const card = jsonData[i];
   const fileName = path.basename(card.ArtFull);
 
+  const attributes = [];
+  const keys = Object.keys(card);
+  let values = Object.values(card);
+  for (let x = 0; x < keys.length; x++) {
+    attributes.push({
+      trait_type: keys[x],
+      value: values[x],
+    });
+  }
+
   // 在这里根据tokenId获取相应的NFT元数据
   // 这里只是一个示例，你需要替换为你自己的逻辑
   const metadata = {
@@ -42,7 +52,7 @@ app.get("/token/:tokenId", (req, res) => {
     description: card.Text,//CONFIG.description,
     tokenId: tokenId,
     image: "http://44.214.29.84:3333/images/" + fileName,
-    attributes: card,
+    attributes: attributes,
     // animation_url: "https://solmonkes.com/api/mp4/" + i + ".mp4",
   };
 
@@ -51,7 +61,7 @@ app.get("/token/:tokenId", (req, res) => {
 
 
 // 启动服务器
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.timeout = 600000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
